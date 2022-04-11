@@ -9,6 +9,9 @@ builds:
       - -s -w
     goos:
       - windows
+    goarch:
+      - 386
+      - amd64
 archives:
   - replacements:
       windows: Windows
