@@ -1,8 +1,8 @@
 package main
 
 import (
+	"flag"
 	"log"
-	"os"
 
 	"github.com/kardianos/service"
 )
@@ -37,6 +37,8 @@ func (p *program) Stop(s service.Service) error {
 }
 
 func main() {
+	svcFlag := flag.String("service", "", "Control the system service.")
+	flag.Parse()
 
 	svcConfig := &service.Config{
 		Name:        "DummyWindowsService",
@@ -55,14 +57,14 @@ func main() {
 		log.Fatal(err)
 	}
 
-	if len(os.Args) > 1 {
-		err := service.Control(s, os.Args[1])
+	if len(*svcFlag) != 0 {
+		err := service.Control(s, *svcFlag)
 		if err != nil {
 			log.Printf("Valid actions: %q\n", service.ControlAction)
 			log.Fatal(err)
 		}
 
-		log.Printf("Action(%s) succeeded.\n", os.Args[1])
+		log.Printf("Action(%s) succeeded.\n", *svcFlag)
 		return
 	}
 
