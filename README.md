@@ -38,3 +38,13 @@ dummy-windows-service.exe -service stop
 ```
 dummy-windows-service.exe -service uninstall
 ```
+
+## Specify service name
+
+The default service name is `DummyWindowsService`.
+
+If you want to change the service name, specify it with `-name`.
+
+```
+dummy-windows-service.exe -name service1 -service install
+```

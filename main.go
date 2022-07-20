@@ -38,10 +38,11 @@ func (p *program) Stop(s service.Service) error {
 
 func main() {
 	svcFlag := flag.String("service", "", "Control the system service.")
+	nameFlag := flag.String("name", "DummyWindowsService", "Name of service.")
 	flag.Parse()
 
 	svcConfig := &service.Config{
-		Name:        "DummyWindowsService",
+		Name:        *nameFlag,
 		DisplayName: "Dummy Windows Service",
 		Description: "This service does nothing.",
 	}
